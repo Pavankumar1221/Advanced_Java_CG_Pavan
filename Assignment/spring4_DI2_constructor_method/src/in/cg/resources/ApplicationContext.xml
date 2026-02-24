@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="
+ http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Address Bean -->
+    <bean id="AddressId-2" class="in.cg.beans.Address">
+        <constructor-arg value="83"/>
+        <constructor-arg value="Balaga Street"/>
+        <constructor-arg value="Srikakulam"/>
+    </bean>
+
+    <!-- Student Bean -->
+    <bean id="StdId-1" class="in.cg.beans.Student">
+        <constructor-arg value="1002"/>
+        <constructor-arg value="Pavan Kumar"/>
+        <constructor-arg value="pavan@gmail.com"/>
+        <constructor-arg ref="AddressId-2"/>
+    </bean>
+
+</beans>

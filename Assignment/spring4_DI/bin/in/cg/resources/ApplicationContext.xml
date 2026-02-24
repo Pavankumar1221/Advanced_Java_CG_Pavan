@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean class="in.cg.beans.Student" id="StdId-1">
+
+    <property name="stdId" value="1002"/>
+    <property name="stdName" value="Pavan Kumar"/>
+    <property name="stdEmail" value="pavan@gmail.com"/>
+
+    <!-- OBJECT injection -->
+    <property name="a" ref="AddressId-2"/>
+
+</bean>
+
+<bean class="in.cg.beans.Address" id="AddressId-2">
+    <property name="houseNo" value="83"/>
+    <property name="streetName" value="Balaga Street"/>
+    <property name="cityName" value="Srikakulam"/>
+</bean>
+    
+    
+
+</beans>
