@@ -1,0 +1,51 @@
+package com.restaurant.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Restaurant {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    private String location;
+
+    private double rating;
+
+    public Restaurant() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+}
