@@ -1,0 +1,46 @@
+#server:
+#  port: 7078
+#
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/springdb
+#    username: pavan
+#    password: Pavan@2004
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+
+server:
+  port: 7708
+
+spring:
+  application:
+    name: user-service
+
+  config:
+    import: "configserver:http://localhost:7777"
+
+  cloud:
+    config:
+      fail-fast: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7779/eureka
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
