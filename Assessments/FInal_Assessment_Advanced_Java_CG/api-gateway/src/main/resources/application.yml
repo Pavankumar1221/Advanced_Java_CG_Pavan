@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: passenger-service
+          uri: lb://PASSENGER-SERVICE
+          predicates:
+            - Path=/passenger/**
+          filters:
+            - StripPrefix=1
+
+        - id: car-rental-service
+          uri: lb://CAR-RENTAL-SERVICE
+          predicates:
+            - Path=/cars/**
+          filters:
+            - StripPrefix=1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6601/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

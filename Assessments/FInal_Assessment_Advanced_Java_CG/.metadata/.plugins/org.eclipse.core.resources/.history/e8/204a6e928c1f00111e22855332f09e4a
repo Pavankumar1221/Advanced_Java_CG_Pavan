@@ -1,0 +1,14 @@
+package in.cg.service;
+
+import in.cg.dto.PassengerDTO;
+import in.cg.entity.Passenger;
+
+public interface PassengerService {
+
+    PassengerDTO getPassengerDetails(Long id);
+
+    Passenger addPassenger(Passenger passenger);
+    
+    public PassengerCarResponseDTO getPassengerDetails(Long id);
+
+}

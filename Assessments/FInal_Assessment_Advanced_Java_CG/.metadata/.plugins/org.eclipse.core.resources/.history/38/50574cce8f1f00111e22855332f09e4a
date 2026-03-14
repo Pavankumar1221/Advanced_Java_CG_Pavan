@@ -1,0 +1,47 @@
+package in.cg.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.cg.dto.CarRentalDTO;
+import in.cg.dto.PassengerCarResponseDTO;
+import in.cg.dto.PassengerDTO;
+import in.cg.entity.Passenger;
+import in.cg.feign.CarRentalFeignClient;
+import in.cg.repository.PassengerRepository;
+
+@Service
+public class PassengerServiceImpl implements PassengerService {
+
+    @Autowired
+    private PassengerRepository passengerRepository;
+
+    @Autowired
+    private CarRentalFeignClient carRentalFeignClient;
+
+    @Override
+    public Passenger addPassenger(Passenger passenger) {
+        return passengerRepository.save(passenger);
+    }
+
+    @Override
+    public PassengerCarResponseDTO getPassengerDetails(Long id) {
+
+        Passenger passenger = passengerRepository.findById(id).orElse(null);
+
+        List<CarRentalDTO> cars = carRentalFeignClient.getRentalCarDetails();
+
+        PassengerCarResponseDTO response = new PassengerCarResponseDTO();
+
+        response.setId(passenger.getId());
+        response.setName(passenger.getName());
+        response.setEmail(passenger.getEmail());
+        response.setPhone(passenger.getPhone());
+
+        response.setCars(cars);
+
+        return response;
+    }
+}

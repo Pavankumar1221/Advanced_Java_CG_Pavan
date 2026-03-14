@@ -1,0 +1,33 @@
+package in.cg.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import in.cg.dto.CarRentalDTO;
+import in.cg.entity.CarRental;
+import in.cg.service.CarRentalService;
+
+@RestController
+public class CarRentalController {
+
+    @Autowired
+    private CarRentalService service;
+    
+    
+    @PostMapping("/addcar")
+    public CarRental addCar(@RequestBody CarRental car) {
+        return repository.save(car);
+    }
+
+    @GetMapping("/rentalcardetails")
+    public List<CarRentalDTO> getCars() {
+        return service.getRentalCarDetails();
+    }
+
+    @GetMapping("/bookingdetails")
+    public String booking() {
+        return service.bookingDetails();
+    }
+}

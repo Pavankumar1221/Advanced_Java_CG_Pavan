@@ -1,0 +1,40 @@
+server:
+  port: 6606
+
+spring:
+  application:
+    name: passenger-service
+
+  config:
+    import: "configserver:http://localhost:6600"
+
+  cloud:
+    config:
+      fail-fast: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6601/eureka
+
+  instance:
+    prefer-ip-address: true
+
+feign:
+  circuitbreaker:
+    enabled: true
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      car-rental-service:
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 3

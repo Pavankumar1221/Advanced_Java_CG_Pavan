@@ -1,0 +1,17 @@
+@Override
+public PassengerDTO getPassengerDetails(Long id) {
+
+    Passenger passenger = passengerRepository.findById(id).orElse(null);
+
+    List<CarRentalDTO> cars = carRentalFeignClient.getRentalCarDetails();
+
+    System.out.println("Cars available: " + cars);
+
+    PassengerDTO dto = new PassengerDTO();
+    dto.setId(passenger.getId());
+    dto.setName(passenger.getName());
+    dto.setEmail(passenger.getEmail());
+    dto.setPhone(passenger.getPhone());
+
+    return dto;
+}

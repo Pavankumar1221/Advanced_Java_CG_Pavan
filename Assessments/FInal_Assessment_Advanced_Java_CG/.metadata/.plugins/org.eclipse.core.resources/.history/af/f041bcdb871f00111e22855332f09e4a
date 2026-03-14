@@ -1,0 +1,5 @@
+package in.cg.service;
+
+public interface PassengerService {
+
+}

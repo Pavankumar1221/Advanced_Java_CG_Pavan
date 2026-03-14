@@ -1,0 +1,42 @@
+package in.cg.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.cg.dto.CarRentalDTO;
+import in.cg.entity.CarRental;
+import in.cg.repository.CarRentalRepository;
+
+@Service
+public class CarRentalServiceImpl implements CarRentalService {
+
+    @Autowired
+    private CarRentalRepository repository;
+
+    @Override
+    public List<CarRentalDTO> getRentalCarDetails() {
+
+        List<CarRental> cars = repository.findAll();
+
+        return cars.stream()
+                .map(c -> new CarRentalDTO(
+                        c.getId(),
+                        c.getCarName(),
+                        c.getCarType(),
+                        c.getPrice()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String bookingDetails() {
+        return "Car booking successful";
+    }
+
+    @Override
+    public CarRental addCar(CarRental car) {
+        return repository.save(car);
+    }
+}

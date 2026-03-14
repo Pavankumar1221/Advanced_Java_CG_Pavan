@@ -1,0 +1,20 @@
+server:
+  port: 6600
+
+spring:
+  application:
+    name: springconfigserver
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Pavankumar1221/final_assessment_configs.git
+          clone-on-start: true
+          default-label: main
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

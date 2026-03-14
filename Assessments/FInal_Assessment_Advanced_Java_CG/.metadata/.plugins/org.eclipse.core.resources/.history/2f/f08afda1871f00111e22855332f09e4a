@@ -1,0 +1,5 @@
+package in.cg.dto;
+
+public class PassengerDTO {
+
+}

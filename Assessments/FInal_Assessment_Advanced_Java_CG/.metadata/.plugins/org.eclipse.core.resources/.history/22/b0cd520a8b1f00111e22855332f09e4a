@@ -1,0 +1,20 @@
+package in.cg.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import in.cg.dto.PassengerDTO;
+import in.cg.service.PassengerService;
+
+@RestController
+@RequestMapping("/passengerdetails")
+public class PassengerController {
+
+    @Autowired
+    private PassengerService passengerService;
+
+    @GetMapping("/{id}")
+    public PassengerDTO getPassenger(@PathVariable Long id) {
+        return passengerService.getPassengerDetails(id);
+    }
+}

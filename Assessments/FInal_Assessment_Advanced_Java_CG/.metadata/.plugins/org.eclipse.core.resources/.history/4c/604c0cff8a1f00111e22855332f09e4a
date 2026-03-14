@@ -1,0 +1,9 @@
+package in.cg.service;
+
+import in.cg.dto.PassengerDTO;
+
+public interface PassengerService {
+
+    PassengerDTO getPassengerDetails(Long id);
+
+}
